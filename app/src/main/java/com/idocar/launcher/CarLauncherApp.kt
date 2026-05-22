@@ -44,6 +44,8 @@ class CarLauncherApp : Application() {
         const val CHANNEL_ID_MEDIA = "media_channel"
         const val CHANNEL_ID_NAVIGATION = "navigation_channel"
         const val CHANNEL_ID_SYSTEM = "system_channel"
+        
+        private const val TAG = "CarLauncherApp"
     }
 
     override fun onCreate() {
@@ -126,9 +128,5 @@ class CarLauncherApp : Application() {
                 Log.e(TAG, "Failed to load plugins", e)
             }
         }
-    }
-
-    companion object {
-        private const val TAG = "CarLauncherApp"
     }
 }
