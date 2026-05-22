@@ -140,4 +140,22 @@
     <string name="speak_now">请说话</string>
     <string name="help">帮助</string>
     <string name="text_input">文字输入</string>
+
+    
+    <!-- 应用选项对话框 -->
+    <string name="add_to_home">添加到主屏幕</string>
+    <string name="add_shortcut">添加快捷方式</string>
+    <string name="app_info">应用信息</string>
+    <string name="uninstall">卸载</string>
+    
+    <!-- 悬浮菜单 -->
+    <string name="home">主页</string>
+    <string name="voice">语音</string>
+    
+    <!-- 插件项 -->
+    <string name="enabled">已启用</string>
+    <string name="configure">配置</string>
+    
+    <!-- 主题项 -->
+    <string name="download">下载</string>
 </resources>
