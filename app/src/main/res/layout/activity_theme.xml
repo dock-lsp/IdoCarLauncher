@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!-- MaterialToolbar 标题栏 -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/surface"
+        app:navigationIcon="@drawable/ic_back"
+        app:navigationIconTint="@color/text_primary"
+        app:title="@string/theme_settings"
+        app:titleTextColor="@color/text_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 主题列表 RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_themes"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/spacing_md"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/spacing_xl"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/layout_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:spanCount="2"
+        tools:listitem="@layout/item_theme" />
+
+    <!-- 底部按钮区域 -->
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_md"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_reset"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_md"
+            android:layout_weight="1"
+            android:text="@string/reset"
+            android:textColor="@color/text_primary"
+            app:backgroundTint="@color/card_background"
+            style="@style/Widget.Material3.Button" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_apply"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/apply"
+            android:textColor="@color/text_primary"
+            app:backgroundTint="@color/primary"
+            style="@style/Widget.Material3.Button" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

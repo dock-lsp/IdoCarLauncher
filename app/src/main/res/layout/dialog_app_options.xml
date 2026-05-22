@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/surface"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_md">
+
+    <!-- 添加到桌面按钮 -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_add_to_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start|center_vertical"
+        android:paddingHorizontal="@dimen/spacing_md"
+        android:text="@string/add_to_home"
+        android:textColor="@color/text_primary"
+        app:icon="@drawable/ic_home"
+        app:iconGravity="start"
+        app:iconPadding="@dimen/spacing_md"
+        app:iconTint="@color/text_primary"
+        style="@style/Widget.Material3.Button.TextButton" />
+
+    <!-- 添加到快捷方式按钮 -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_add_shortcut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start|center_vertical"
+        android:paddingHorizontal="@dimen/spacing_md"
+        android:text="@string/add_shortcut"
+        android:textColor="@color/text_primary"
+        app:icon="@drawable/ic_shortcut"
+        app:iconGravity="start"
+        app:iconPadding="@dimen/spacing_md"
+        app:iconTint="@color/text_primary"
+        style="@style/Widget.Material3.Button.TextButton" />
+
+    <!-- 应用信息按钮 -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_app_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start|center_vertical"
+        android:paddingHorizontal="@dimen/spacing_md"
+        android:text="@string/app_info"
+        android:textColor="@color/text_primary"
+        app:icon="@drawable/ic_info"
+        app:iconGravity="start"
+        app:iconPadding="@dimen/spacing_md"
+        app:iconTint="@color/text_primary"
+        style="@style/Widget.Material3.Button.TextButton" />
+
+    <!-- 卸载按钮 -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_uninstall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start|center_vertical"
+        android:paddingHorizontal="@dimen/spacing_md"
+        android:text="@string/uninstall"
+        android:textColor="@color/error"
+        app:icon="@drawable/ic_delete"
+        app:iconGravity="start"
+        app:iconPadding="@dimen/spacing_md"
+        app:iconTint="@color/error"
+        style="@style/Widget.Material3.Button.TextButton" />
+
+</LinearLayout>

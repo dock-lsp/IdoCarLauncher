@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!-- 关闭按钮 -->
+    <ImageButton
+        android:id="@+id/btn_close"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/spacing_md"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_close"
+        app:tint="@color/text_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 状态文字 -->
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xl"
+        android:text="@string/listening"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_xxl"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 波形动画 View -->
+    <View
+        android:id="@+id/wave_view"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:background="@drawable/bg_wave_animation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_status" />
+
+    <!-- 麦克风按钮 -->
+    <ImageButton
+        android:id="@+id/btn_microphone"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:background="@drawable/bg_circle_primary"
+        android:padding="@dimen/spacing_lg"
+        android:src="@drawable/ic_microphone"
+        app:tint="@color/text_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/wave_view" />
+
+    <!-- 识别文字 -->
+    <TextView
+        android:id="@+id/tv_recognized_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_lg"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:text="@string/speak_now"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_lg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_microphone" />
+
+    <!-- 回复文字 -->
+    <TextView
+        android:id="@+id/tv_response"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_lg"
+        android:layout_marginTop="@dimen/spacing_md"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:text=""
+        android:textColor="@color/primary"
+        android:textSize="@dimen/text_lg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_recognized_text" />
+
+    <!-- 底部按钮 -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_xl"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_lg"
+            android:text="@string/help"
+            android:textColor="@color/text_primary"
+            app:icon="@drawable/ic_help"
+            app:iconTint="@color/text_primary"
+            style="@style/Widget.Material3.Button.TextButton" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_text_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_input"
+            android:textColor="@color/text_primary"
+            app:icon="@drawable/ic_keyboard"
+            app:iconTint="@color/text_primary"
+            style="@style/Widget.Material3.Button.TextButton" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

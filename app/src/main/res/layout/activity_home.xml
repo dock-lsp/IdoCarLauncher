@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!-- 顶部状态栏 -->
+    <LinearLayout
+        android:id="@+id/layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_md"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- 时间和日期 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12:00"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_xxxl"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1月1日 星期一"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_md" />
+        </LinearLayout>
+
+        <!-- 车辆信息 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_speed"
+                app:tint="@color/text_secondary" />
+
+            <TextView
+                android:id="@+id/tv_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_sm"
+                android:text="0"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_xl" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="km/h"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_sm" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="@dimen/spacing_md"
+                android:src="@drawable/ic_temperature"
+                app:tint="@color/text_secondary" />
+
+            <TextView
+                android:id="@+id/tv_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_sm"
+                android:text="24°C"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_lg" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 导航卡片 -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_navigation"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/home_widget_height"
+        android:layout_margin="@dimen/spacing_md"
+        app:cardBackgroundColor="@color/navigation_background"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:layout_constraintEnd_toStartOf="@id/card_media"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_header"
+        app:layout_constraintWidth_percent="0.48">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_md">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_navigation"
+                app:tint="@color/navigation_primary" />
+
+            <TextView
+                android:id="@+id/tv_nav_destination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:text="@string/tap_to_navigate"
+                android:textColor="@color/navigation_primary"
+                android:textSize="@dimen/text_lg"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_nav_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_dark_secondary"
+                android:textSize="@dimen/text_sm" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- 媒体卡片 -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_media"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/home_widget_height"
+        android:layout_margin="@dimen/spacing_md"
+        app:cardBackgroundColor="@color/music_background"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/card_navigation"
+        app:layout_constraintTop_toBottomOf="@id/layout_header"
+        app:layout_constraintWidth_percent="0.48">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_md">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_music"
+                app:tint="@color/music_primary" />
+
+            <TextView
+                android:id="@+id/tv_media_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/no_media"
+                android:textColor="@color/music_primary"
+                android:textSize="@dimen/text_lg"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_media_artist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/text_dark_secondary"
+                android:textSize="@dimen/text_sm" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btn_play_pause"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_play"
+                    app:tint="@color/music_primary" />
+
+                <ImageButton
+                    android:id="@+id/btn_next"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="@dimen/spacing_md"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_next"
+                    app:tint="@color/music_primary" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- 快捷方式 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_shortcuts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_md"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/card_navigation" />
+
+    <!-- 应用网格 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_apps"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/spacing_md"
+        android:padding="@dimen/home_app_grid_padding"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/layout_bottom"
+        app:layout_constraintTop_toBottomOf="@id/recycler_shortcuts"
+        app:spanCount="4" />
+
+    <!-- 底部工具栏 -->
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_md"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_settings"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_button"
+            android:src="@drawable/ic_settings"
+            app:tint="@color/text_primary" />
+
+        <ImageButton
+            android:id="@+id/btn_app_manager"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="@dimen/spacing_md"
+            android:background="@drawable/bg_button"
+            android:src="@drawable/ic_apps"
+            app:tint="@color/text_primary" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/btn_theme"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="@dimen/spacing_md"
+            android:background="@drawable/bg_button"
+            android:src="@drawable/ic_theme"
+            app:tint="@color/text_primary" />
+
+        <ImageButton
+            android:id="@+id/btn_voice"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_button"
+            android:src="@drawable/ic_voice"
+            app:tint="@color/text_primary" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
