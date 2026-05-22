@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="home_widget_height">160dp</dimen>
+    <integer name="app_grid_span_count">4</integer>
+</resources>

@@ -14,6 +14,7 @@ import com.idocar.launcher.R
 import com.idocar.launcher.databinding.DialogFloatingMenuBinding
 import com.idocar.launcher.ui.HomeActivity
 import com.idocar.launcher.navigation.NavigationActivity
+import com.idocar.launcher.ui.SettingsActivity
 import com.idocar.launcher.ui.VoiceAssistantActivity
 
 /**
@@ -140,7 +141,9 @@ class FloatingBallService : Service() {
         }
 
         menuBinding.btnSettings.setOnClickListener {
-            // 打开设置
+            val intent = Intent(this, SettingsActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
             hideMenu()
         }
 

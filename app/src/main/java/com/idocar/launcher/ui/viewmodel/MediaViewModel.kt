@@ -1,16 +1,20 @@
 package com.idocar.launcher.ui.viewmodel
 
 import android.app.Application
+import android.content.ContentResolver
+import android.provider.MediaStore
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.idocar.launcher.CarLauncherApp
 import com.idocar.launcher.data.MediaPlaybackState
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * 媒体播放 ViewModel
@@ -50,15 +54,46 @@ class MediaViewModel(application: Application) : AndroidViewModel(application) {
 
     fun loadLocalMusic() {
         viewModelScope.launch {
-            // 模拟加载本地音乐
-            val mockItems = listOf(
-                MediaItem("1", "歌曲 1", "艺术家 A", "专辑 X", 240000),
-                MediaItem("2", "歌曲 2", "艺术家 B", "专辑 Y", 180000),
-                MediaItem("3", "歌曲 3", "艺术家 C", "专辑 Z", 210000),
-                MediaItem("4", "歌曲 4", "艺术家 A", "专辑 X", 195000),
-                MediaItem("5", "歌曲 5", "艺术家 D", "专辑 W", 225000)
-            )
-            _mediaItems.value = mockItems
+            val items = mutableListOf<MediaItem>()
+            withContext(Dispatchers.IO) {
+                val resolver: ContentResolver = getApplication<Application>().contentResolver
+                val projection = arrayOf(
+                    MediaStore.Audio.Media._ID,
+                    MediaStore.Audio.Media.TITLE,
+                    MediaStore.Audio.Media.ARTIST,
+                    MediaStore.Audio.Media.ALBUM,
+                    MediaStore.Audio.Media.DURATION,
+                    MediaStore.Audio.Media.DATA
+                )
+                val selection = "${MediaStore.Audio.Media.IS_MUSIC} != 0"
+                val sortOrder = "${MediaStore.Audio.Media.TITLE} ASC"
+
+                resolver.query(
+                    MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                    projection,
+                    selection,
+                    null,
+                    sortOrder
+                )?.use { cursor ->
+                    val idColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID)
+                    val titleColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE)
+                    val artistColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST)
+                    val albumColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM)
+                    val durationColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION)
+                    val dataColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA)
+
+                    while (cursor.moveToNext()) {
+                        val id = cursor.getString(idColumn)
+                        val title = cursor.getString(titleColumn) ?: "未知标题"
+                        val artist = cursor.getString(artistColumn) ?: "未知艺术家"
+                        val album = cursor.getString(albumColumn) ?: "未知专辑"
+                        val duration = cursor.getLong(durationColumn)
+                        // dataColumn 路径可用于后续播放
+                        items.add(MediaItem(id, title, artist, album, duration))
+                    }
+                }
+            }
+            _mediaItems.value = items
         }
     }
 

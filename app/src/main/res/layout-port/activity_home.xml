@@ -86,18 +86,19 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- 导航卡片 -->
+    <!-- 导航卡片（竖屏：占满宽度，高度减小） -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_navigation"
         android:layout_width="0dp"
         android:layout_height="@dimen/home_widget_height"
-        android:layout_margin="@dimen/spacing_md"
+        android:layout_marginStart="@dimen/spacing_md"
+        android:layout_marginEnd="@dimen/spacing_md"
+        android:layout_marginTop="@dimen/spacing_md"
         app:cardBackgroundColor="@color/navigation_background"
         app:cardCornerRadius="@dimen/card_corner_radius"
-        app:layout_constraintEnd_toStartOf="@id/card_media"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_header"
-        app:layout_constraintWidth_percent="0.48">
+        app:layout_constraintTop_toBottomOf="@id/layout_header">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -131,18 +132,19 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- 媒体卡片 -->
+    <!-- 媒体卡片（竖屏：占满宽度，高度减小，位于导航卡片下方） -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_media"
         android:layout_width="0dp"
         android:layout_height="@dimen/home_widget_height"
-        android:layout_margin="@dimen/spacing_md"
+        android:layout_marginStart="@dimen/spacing_md"
+        android:layout_marginEnd="@dimen/spacing_md"
+        android:layout_marginTop="@dimen/spacing_md"
         app:cardBackgroundColor="@color/music_background"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/card_navigation"
-        app:layout_constraintTop_toBottomOf="@id/layout_header"
-        app:layout_constraintWidth_percent="0.48">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_navigation">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -204,7 +206,7 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- 快捷方式 -->
+    <!-- 快捷方式（竖屏：保持水平滚动） -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_shortcuts"
         android:layout_width="match_parent"
@@ -212,9 +214,9 @@
         android:layout_margin="@dimen/spacing_md"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/card_navigation" />
+        app:layout_constraintTop_toBottomOf="@id/card_media" />
 
-    <!-- 应用网格 -->
+    <!-- 应用网格（竖屏：3列） -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_apps"
         android:layout_width="match_parent"

@@ -207,17 +207,41 @@ class VoiceAssistantActivity : AppCompatActivity() {
 
     private fun processTextCommand(text: String) {
         binding.tvRecognizedText.text = text
-        // 使用相同的命令处理逻辑
-        val command = VoiceCommandProcessor(this)
-        val response = command.handleCommand(
-            VoiceAssistantManager(this).let { 
-                // 这里简化处理，实际需要解析命令类型
-                com.idocar.launcher.data.VoiceCommandType.UNKNOWN 
-            }, 
-            text
-        )
+        // 使用 VoiceCommandProcessor 解析命令类型并处理
+        val commandType = parseTextCommand(text)
+        val response = commandProcessor.handleCommand(commandType, text)
         binding.tvResponse.text = response
         voiceManager.speak(response)
+    }
+
+    /**
+     * 解析文字命令类型
+     */
+    private fun parseTextCommand(text: String): com.idocar.launcher.data.VoiceCommandType {
+        val lowerText = text.lowercase(java.util.Locale.getDefault())
+        return when {
+            // 打开应用
+            lowerText.contains("打开") || lowerText.contains("启动") -> com.idocar.launcher.data.VoiceCommandType.OPEN_APP
+            // 播放音乐
+            lowerText.contains("播放") || lowerText.contains("听歌") ||
+            lowerText.contains("音乐") -> com.idocar.launcher.data.VoiceCommandType.PLAY_MUSIC
+            // 导航
+            lowerText.contains("导航") || lowerText.contains("去") ||
+            lowerText.contains("怎么走") -> com.idocar.launcher.data.VoiceCommandType.NAVIGATE
+            // 打电话
+            lowerText.contains("打电话") || lowerText.contains("呼叫") ||
+            lowerText.contains("拨打") -> com.idocar.launcher.data.VoiceCommandType.CALL
+            // 设置
+            lowerText.contains("设置") || (lowerText.contains("打开") &&
+            (lowerText.contains("蓝牙") || lowerText.contains("wifi") || lowerText.contains("音量"))) ->
+                com.idocar.launcher.data.VoiceCommandType.SETTING
+            // 天气
+            lowerText.contains("天气") || lowerText.contains("温度") -> com.idocar.launcher.data.VoiceCommandType.WEATHER
+            // 音量
+            lowerText.contains("音量") || lowerText.contains("大声") ||
+            lowerText.contains("小声") -> com.idocar.launcher.data.VoiceCommandType.VOLUME
+            else -> com.idocar.launcher.data.VoiceCommandType.UNKNOWN
+        }
     }
 
     override fun onDestroy() {
