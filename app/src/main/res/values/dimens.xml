@@ -30,6 +30,9 @@
     
     <!-- 主界面 -->
     <dimen name="home_header_height">120dp</dimen>
-    <dimen name="home_widget_height">160dp</dimen>
+    <dimen name="home_widget_height">140dp</dimen>
     <dimen name="home_app_grid_padding">8dp</dimen>
+    
+    <!-- 应用网格列数（默认值，横屏/竖屏通过限定符覆盖） -->
+    <integer name="app_grid_span_count">4</integer>
 </resources>
