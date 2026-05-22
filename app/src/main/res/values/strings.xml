@@ -14,6 +14,7 @@
     <string name="empty">暂无数据</string>
     <string name="error">出错了</string>
     <string name="retry">重试</string>
+    <string name="stop">停止</string>
     
     <!-- 主界面 -->
     <string name="tap_to_navigate">点击开始导航</string>
