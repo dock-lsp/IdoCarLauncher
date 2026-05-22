@@ -26,6 +26,7 @@ import com.idocar.launcher.data.AppItem
 import com.idocar.launcher.data.ShortcutItem
 import com.idocar.launcher.databinding.ActivityHomeBinding
 import com.idocar.launcher.service.FloatingBallService
+import com.idocar.launcher.navigation.NavigationActivity
 import com.idocar.launcher.ui.viewmodel.HomeViewModel
 import com.idocar.launcher.util.AppUtils
 import com.idocar.launcher.util.TimeUtils

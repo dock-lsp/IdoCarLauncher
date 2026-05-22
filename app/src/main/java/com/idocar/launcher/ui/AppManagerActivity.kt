@@ -1,6 +1,9 @@
 package com.idocar.launcher.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -70,7 +73,7 @@ class AppManagerActivity : AppCompatActivity() {
                 R.id.chip_navigation -> viewModel.filterByCategory(AppItem.AppCategory.NAVIGATION)
                 R.id.chip_music -> viewModel.filterByCategory(AppItem.AppCategory.MUSIC)
                 R.id.chip_video -> viewModel.filterByCategory(AppItem.AppCategory.VIDEO)
-                R.id.chip_tools -> viewModel.filterByCategory(AppItem.AppCategory.TOOLS)
+                R.id.chip_tool -> viewModel.filterByCategory(AppItem.AppCategory.TOOLS)
             }
         }
 
@@ -149,8 +152,8 @@ class AppManagerActivity : AppCompatActivity() {
             .setTitle("卸载应用")
             .setMessage("确定要卸载 ${app.appName} 吗？")
             .setPositiveButton("卸载") { _, _ ->
-                val intent = Intent(android.content.Intent.ACTION_DELETE).apply {
-                    data = android.net.Uri.parse("package:${app.packageName}")
+                val intent = Intent(Intent.ACTION_DELETE).apply {
+                    data = Uri.parse("package:${app.packageName}")
                 }
                 startActivity(intent)
             }
@@ -159,8 +162,8 @@ class AppManagerActivity : AppCompatActivity() {
     }
 
     private fun showAppInfo(app: AppItem) {
-        val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-            data = android.net.Uri.parse("package:${app.packageName}")
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+            data = Uri.parse("package:${app.packageName}")
         }
         startActivity(intent)
     }
