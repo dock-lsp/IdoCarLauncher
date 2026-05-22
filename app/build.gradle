@@ -123,8 +123,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:21.0.1'
     implementation 'com.google.android.gms:play-services-maps:18.2.0'
     
-    // Speech Recognition
-    implementation 'com.google.mlkit:speech:1.0.0'
+    // Speech Recognition - 使用 Android 内置 SpeechRecognizer API
+    // ML Kit 语音识别需要单独配置，这里使用系统内置 API
     
     // Testing
     testImplementation 'junit:junit:4.13.2'
