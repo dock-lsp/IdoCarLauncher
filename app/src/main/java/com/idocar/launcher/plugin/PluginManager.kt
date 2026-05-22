@@ -94,13 +94,22 @@ class PluginManager(private val context: Context) {
     private fun loadBuiltInPlugins(pluginList: MutableList<PluginInfo>) {
         try {
             val assets = context.assets
-            val builtInPlugins = assets.list("plugins") ?: return
+            // 检查 plugins 目录是否存在
+            val builtInPlugins = try {
+                assets.list("plugins")
+            } catch (e: Exception) {
+                null
+            } ?: return
 
             for (pluginFile in builtInPlugins) {
                 if (pluginFile.endsWith(".json")) {
-                    val json = assets.open("plugins/$pluginFile").bufferedReader().use { it.readText() }
-                    val pluginInfo = parsePluginJson(json)
-                    pluginList.add(pluginInfo)
+                    try {
+                        val json = assets.open("plugins/$pluginFile").bufferedReader().use { it.readText() }
+                        val pluginInfo = parsePluginJson(json)
+                        pluginList.add(pluginInfo)
+                    } catch (e: Exception) {
+                        Log.e(TAG, "Failed to load plugin config: $pluginFile", e)
+                    }
                 }
             }
         } catch (e: Exception) {

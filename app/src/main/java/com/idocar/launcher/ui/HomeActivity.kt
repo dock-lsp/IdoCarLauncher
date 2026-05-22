@@ -175,8 +175,12 @@ class HomeActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 // 观察媒体播放状态
-                (application as CarLauncherApp).mediaControllerManager.playbackState.collect { state ->
-                    updateMediaWidget(state)
+                try {
+                    (application as CarLauncherApp).mediaControllerManager.playbackState.collect { state ->
+                        updateMediaWidget(state)
+                    }
+                } catch (e: Exception) {
+                    // 忽略媒体控制器异常
                 }
             }
         }
@@ -184,8 +188,12 @@ class HomeActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 // 观察导航状态
-                (application as CarLauncherApp).navigationManager.navigationState.collect { state ->
-                    updateNavigationWidget(state)
+                try {
+                    (application as CarLauncherApp).navigationManager.navigationState.collect { state ->
+                        updateNavigationWidget(state)
+                    }
+                } catch (e: Exception) {
+                    // 忽略导航管理器异常
                 }
             }
         }

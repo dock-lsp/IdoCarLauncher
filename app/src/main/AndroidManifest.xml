@@ -19,6 +19,9 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     
+    <!-- 媒体控制权限 -->
+    <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+    
     <!-- 电话权限 -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />

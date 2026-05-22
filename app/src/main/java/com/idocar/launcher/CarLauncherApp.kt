@@ -108,14 +108,22 @@ class CarLauncherApp : Application() {
 
     private fun initializeAppData() {
         applicationScope.launch(Dispatchers.IO) {
-            // 加载已安装应用
-            val installedApps = com.idocar.launcher.util.AppUtils.getInstalledApps(this@CarLauncherApp)
-            
-            // 保存到数据库
-            database.appDao().insertApps(installedApps)
+            try {
+                // 加载已安装应用
+                val installedApps = com.idocar.launcher.util.AppUtils.getInstalledApps(this@CarLauncherApp)
+                
+                // 保存到数据库
+                database.appDao().insertApps(installedApps)
+            } catch (e: Exception) {
+                Log.e(TAG, "Failed to initialize app data", e)
+            }
             
             // 加载插件
-            pluginManager.loadPlugins()
+            try {
+                pluginManager.loadPlugins()
+            } catch (e: Exception) {
+                Log.e(TAG, "Failed to load plugins", e)
+            }
         }
     }
 }

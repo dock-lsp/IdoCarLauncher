@@ -40,6 +40,10 @@ class NavigationManager(private val context: Context) {
         override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
     }
 
+    companion object {
+        private const val TAG = "NavigationManager"
+    }
+
     /**
      * 开始导航
      */

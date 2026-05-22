@@ -50,14 +50,19 @@ class MediaControllerManager(private val context: Context) {
     }
 
     init {
-        // 监听活跃的媒体会话
-        val componentName = ComponentName(context, MediaBrowserService::class.java)
-        mediaSessionManager.addOnActiveSessionsChangedListener(sessionCallback, componentName)
-        
-        // 获取当前活跃的会话
-        val controllers = mediaSessionManager.getActiveSessions(componentName)
-        _availableControllers.value = controllers
-        controllers.firstOrNull()?.let { connectToController(it) }
+        try {
+            // 监听活跃的媒体会话
+            val componentName = ComponentName(context, MediaBrowserService::class.java)
+            mediaSessionManager.addOnActiveSessionsChangedListener(sessionCallback, componentName)
+            
+            // 获取当前活跃的会话
+            val controllers = mediaSessionManager.getActiveSessions(componentName)
+            _availableControllers.value = controllers
+            controllers.firstOrNull()?.let { connectToController(it) }
+        } catch (e: Exception) {
+            // 可能是权限问题或其他异常
+            Log.e(TAG, "Failed to initialize media controller", e)
+        }
     }
 
     private fun connectToController(controller: MediaController) {
@@ -153,7 +158,15 @@ class MediaControllerManager(private val context: Context) {
     }
 
     fun cleanup() {
-        activeController?.unregisterCallback(controllerCallback)
-        mediaSessionManager.removeOnActiveSessionsChangedListener(sessionCallback)
+        try {
+            activeController?.unregisterCallback(controllerCallback)
+            mediaSessionManager.removeOnActiveSessionsChangedListener(sessionCallback)
+        } catch (e: Exception) {
+            Log.e(TAG, "Error during cleanup", e)
+        }
+    }
+
+    companion object {
+        private const val TAG = "MediaControllerManager"
     }
 }
