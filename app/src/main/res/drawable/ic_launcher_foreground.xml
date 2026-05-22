@@ -4,13 +4,8 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
+    <!-- Car icon -->
     <path
-        android:fillColor="@android:color/white"
-        android:pathData="M54,30c-13.25,0 -24,10.75 -24,24s10.75,24 24,24 24,-10.75 24,-24S67.25,30 54,30zM54,72c-9.94,0 -18,-8.06 -18,-18s8.06,-18 18,-18 18,8.06 18,18S63.94,72 54,72z"/>
-    <path
-        android:fillColor="@android:color/white"
-        android:pathData="M54,40c-7.73,0 -14,6.27 -14,14s6.27,14 14,14 14,-6.27 14,-14S61.73,40 54,40zM54,64c-5.52,0 -10,-4.48 -10,-10s4.48,-10 10,-10 10,4.48 10,10S59.52,64 54,64z"/>
-    <path
-        android:fillColor="@android:color/white"
-        android:pathData="M54,46c-4.41,0 -8,3.59 -8,8s3.59,8 8,8 8,-3.59 8,-8S58.41,46 54,46zM54,58c-2.21,0 -4,-1.79 -4,-4s1.79,-4 4,-4 4,1.79 4,4S56.21,58 54,58z"/>
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,24 L42,36 L30,36 C27,36 24,39 24,42 L24,54 L18,54 C16,54 15,55 15,57 L15,63 C15,65 16,66 18,66 L24,66 L24,69 C24,72 27,75 30,75 L36,75 C39,75 42,72 42,69 L42,66 L66,66 L66,69 C66,72 69,75 72,75 L78,75 C81,75 84,72 84,69 L84,66 L90,66 C92,66 93,65 93,63 L93,57 C93,55 92,54 90,54 L84,54 L84,42 C84,39 81,36 78,36 L66,36 L54,24 Z M30,42 L78,42 L78,54 L30,54 L30,42 Z"/>
 </vector>
