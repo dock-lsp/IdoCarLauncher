@@ -5,6 +5,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.idocar.launcher.data.database.AppDatabase
 import com.idocar.launcher.media.MediaControllerManager
@@ -125,5 +126,9 @@ class CarLauncherApp : Application() {
                 Log.e(TAG, "Failed to load plugins", e)
             }
         }
+    }
+
+    companion object {
+        private const val TAG = "CarLauncherApp"
     }
 }
