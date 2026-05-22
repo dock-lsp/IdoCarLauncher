@@ -36,9 +36,9 @@ object AppUtils {
                 appName = appName,
                 activityName = "",
                 category = category,
-                isSystemApp = isSystemApp,
-                icon = appInfo.loadIcon(pm)
+                isSystemApp = isSystemApp
             )
+            appItem.icon = appInfo.loadIcon(pm)
 
             apps.add(appItem)
         }

@@ -165,7 +165,15 @@ class AppOptionsDialog : DialogFragment() {
             putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)
             putExtra(Intent.EXTRA_SHORTCUT_NAME, app.appName)
             app.icon?.let { icon ->
-                putExtra(Intent.EXTRA_SHORTCUT_ICON, icon)
+                val bitmap = android.graphics.Bitmap.createBitmap(
+                    icon.intrinsicWidth.coerceAtLeast(1),
+                    icon.intrinsicHeight.coerceAtLeast(1),
+                    android.graphics.Bitmap.Config.ARGB_8888
+                )
+                val canvas = android.graphics.Canvas(bitmap)
+                icon.setBounds(0, 0, canvas.width, canvas.height)
+                icon.draw(canvas)
+                putExtra(Intent.EXTRA_SHORTCUT_ICON, bitmap)
             }
         }
 

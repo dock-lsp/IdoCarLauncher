@@ -45,8 +45,7 @@ class AppManagerViewModel(application: Application) : AndroidViewModel(applicati
 
     private fun loadApps() {
         viewModelScope.launch {
-            val appUtils = AppUtils(getApplication())
-            _allApps.value = appUtils.getInstalledApps()
+            _allApps.value = AppUtils.getInstalledApps(getApplication())
         }
     }
 

@@ -109,8 +109,7 @@ class CarLauncherApp : Application() {
     private fun initializeAppData() {
         applicationScope.launch(Dispatchers.IO) {
             // 加载已安装应用
-            val appUtils = com.idocar.launcher.util.AppUtils(this@CarLauncherApp)
-            val installedApps = appUtils.getInstalledApps()
+            val installedApps = com.idocar.launcher.util.AppUtils.getInstalledApps(this@CarLauncherApp)
             
             // 保存到数据库
             database.appDao().insertApps(installedApps)
