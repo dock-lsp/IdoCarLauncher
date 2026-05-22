@@ -36,6 +36,8 @@
     </style>
     
     <!-- CardView 样式 -->
+    <style name="Widget.CarLauncher" />
+    
     <style name="Widget.CarLauncher.CardView" parent="Widget.Material3.CardView.Elevated">
         <item name="cardBackgroundColor">@color/card_background</item>
         <item name="cardCornerRadius">16dp</item>
@@ -61,6 +63,10 @@
     </style>
     
     <!-- 文字样式 -->
+    <style name="Text.CarLauncher">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    
     <style name="Text.CarLauncher.Headline">
         <item name="android:textSize">32sp</item>
         <item name="android:textColor">@color/text_primary</item>
