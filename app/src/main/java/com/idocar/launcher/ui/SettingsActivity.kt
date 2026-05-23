@@ -2,12 +2,12 @@ package com.idocar.launcher.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
 import com.idocar.launcher.R
+import com.idocar.launcher.databinding.ActivitySettingsBinding
 import com.idocar.launcher.service.FloatingBallService
 
 /**
@@ -15,13 +15,16 @@ import com.idocar.launcher.service.FloatingBallService
  */
 class SettingsActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivitySettingsBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            title = getString(R.string.settings)
+        // 设置 Toolbar
+        binding.toolbar.setNavigationOnClickListener {
+            finish()
         }
 
         if (savedInstanceState == null) {
@@ -29,16 +32,6 @@ class SettingsActivity : AppCompatActivity() {
                 .beginTransaction()
                 .replace(R.id.settings_container, SettingsFragment())
                 .commit()
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
         }
     }
 

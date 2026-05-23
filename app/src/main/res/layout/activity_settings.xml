@@ -5,13 +5,27 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
-    <FrameLayout
-        android:id="@+id/settings_container"
+    <!-- MaterialToolbar 标题栏 -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/surface"
+        app:navigationIcon="@drawable/ic_back"
+        app:navigationIconTint="@color/text_primary"
+        app:title="@string/settings"
+        app:titleTextColor="@color/text_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/settings_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

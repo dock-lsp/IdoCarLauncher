@@ -4,14 +4,12 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -39,9 +37,18 @@ class AppManagerActivity : AppCompatActivity() {
         binding = ActivityAppManagerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            title = getString(R.string.app_manager)
+        // 设置 Toolbar
+        binding.toolbar.setNavigationOnClickListener {
+            finish()
+        }
+        binding.toolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.action_sort -> {
+                    showSortOptions()
+                    true
+                }
+                else -> false
+            }
         }
 
         setupRecyclerView()
@@ -66,6 +73,15 @@ class AppManagerActivity : AppCompatActivity() {
     }
 
     private fun setupListeners() {
+        // 搜索框
+        binding.etSearch.setOnEditorActionListener { _, _, _ ->
+            viewModel.searchApps(binding.etSearch.text.toString())
+            true
+        }
+        binding.etSearch.doAfterTextChanged { text ->
+            viewModel.searchApps(text?.toString() ?: "")
+        }
+
         // 分类筛选
         binding.chipGroupCategory.setOnCheckedStateChangeListener { _, checkedIds ->
             when (checkedIds.firstOrNull()) {
@@ -173,38 +189,6 @@ class AppManagerActivity : AppCompatActivity() {
         viewModel.refreshApps()
         binding.progressBar.visibility = View.GONE
         Toast.makeText(this, "应用列表已刷新", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_app_manager, menu)
-
-        val searchItem = menu.findItem(R.id.action_search)
-        val searchView = searchItem?.actionView as? SearchView
-
-        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean = false
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                viewModel.searchApps(newText ?: "")
-                return true
-            }
-        })
-
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                true
-            }
-            R.id.action_sort -> {
-                showSortOptions()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     private fun showSortOptions() {

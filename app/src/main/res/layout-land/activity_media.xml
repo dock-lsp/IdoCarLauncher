@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 横屏布局：左右分栏设计 -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!-- 返回按钮 -->
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/spacing_sm"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_back"
+        app:tint="@color/text_primary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 左侧面板（约40%宽度）- 播放控制区域 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/left_panel"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/spacing_xxl"
+        android:padding="@dimen/spacing_md"
+        app:layout_constraintEnd_toStartOf="@id/right_panel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.4">
+
+        <!-- 专辑封面 -->
+        <ImageView
+            android:id="@+id/iv_album_art"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_album"
+            app:tint="@color/text_secondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 歌曲标题 -->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/no_media"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_lg"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_album_art" />
+
+        <!-- 艺术家 -->
+        <TextView
+            android:id="@+id/tv_artist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/unknown_artist"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_sm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+        <!-- 进度条 -->
+        <SeekBar
+            android:id="@+id/seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:progressTint="@color/primary"
+            android:thumbTint="@color/primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_artist" />
+
+        <!-- 时间显示 -->
+        <LinearLayout
+            android:id="@+id/layout_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seek_bar">
+
+            <TextView
+                android:id="@+id/tv_current_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0:00"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_xs" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tv_total_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0:00"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_xs" />
+        </LinearLayout>
+
+        <!-- 控制按钮 -->
+        <LinearLayout
+            android:id="@+id/layout_controls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_time">
+
+            <ImageButton
+                android:id="@+id/btn_shuffle"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_shuffle"
+                app:tint="@color/text_secondary" />
+
+            <ImageButton
+                android:id="@+id/btn_previous"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="@dimen/spacing_sm"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_previous"
+                app:tint="@color/text_primary" />
+
+            <ImageButton
+                android:id="@+id/btn_play_pause"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginHorizontal="@dimen/spacing_md"
+                android:background="@drawable/bg_circle_primary"
+                android:padding="@dimen/spacing_sm"
+                android:src="@drawable/ic_play"
+                app:tint="@color/text_primary" />
+
+            <ImageButton
+                android:id="@+id/btn_next"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_next"
+                app:tint="@color/text_primary" />
+
+            <ImageButton
+                android:id="@+id/btn_repeat"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/spacing_sm"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_repeat"
+                app:tint="@color/text_secondary" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 右侧面板（约60%宽度）- 播放列表区域 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/right_panel"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/spacing_xxl"
+        android:padding="@dimen/spacing_md"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/left_panel"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.6">
+
+        <!-- TabLayout -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/surface"
+            app:tabIndicatorColor="@color/primary"
+            app:tabSelectedTextColor="@color/primary"
+            app:tabTextColor="@color/text_secondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tab_local" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tab_playlist" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tab_artist" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tab_album" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <!-- 播放列表 RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_playlist"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/spacing_md"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tab_layout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
