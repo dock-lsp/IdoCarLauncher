@@ -33,4 +33,10 @@
     
     <!-- 启动图标背景 -->
     <color name="ic_launcher_background">#1976D2</color>
+    
+    <!-- 分割线颜色 -->
+    <color name="divider">#33FFFFFF</color>
+    
+    <!-- 导航颜色 -->
+    <color name="navigation_primary">#4CAF50</color>
 </resources>

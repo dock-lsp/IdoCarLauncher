@@ -95,4 +95,26 @@
     <string name="theme_dark">深色主题</string>
     <string name="theme_apply">应用主题</string>
     <string name="theme_download">下载主题</string>
+    
+    <!-- 应用管理 -->
+    <string name="search_apps">搜索应用</string>
+    <string name="category_all">全部</string>
+    <string name="category_navigation">导航</string>
+    <string name="category_music">音乐</string>
+    <string name="category_video">视频</string>
+    <string name="category_tool">工具</string>
+    <string name="hide_system_apps">隐藏系统应用</string>
+    <string name="refresh">刷新</string>
+    <string name="no_apps_found">未找到应用</string>
+    
+    <!-- 媒体播放 -->
+    <string name="unknown_artist">未知艺术家</string>
+    <string name="tab_local">本地</string>
+    <string name="tab_playlist">播放列表</string>
+    <string name="tab_artist">艺术家</string>
+    <string name="tab_album">专辑</string>
+    
+    <!-- 导航 -->
+    <string name="voice_input">语音输入</string>
+    <string name="start_navigation">开始导航</string>
 </resources>
