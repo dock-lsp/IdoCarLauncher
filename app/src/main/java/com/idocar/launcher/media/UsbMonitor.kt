@@ -359,8 +359,9 @@ private fun StorageVolume.getPath(context: Context): String? {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
             this.directory?.absolutePath
         } else {
-            @Suppress("DEPRECATION", "USELESS_CAST")
-            (this as android.os.storage.StorageVolume).path
+            @Suppress("DEPRECATION")
+            val method = android.os.storage.StorageVolume::class.java.getMethod("getPath")
+            method.invoke(this) as? String
         }
     } catch (e: Exception) {
         null

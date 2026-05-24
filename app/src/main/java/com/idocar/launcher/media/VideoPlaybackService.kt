@@ -231,7 +231,8 @@ class VideoPlaybackService : Service() {
 
         // 处理播放队列设置
         @Suppress("DEPRECATION")
-        intent?.getParcelableArrayListExtra<MediaItem>("video_queue")?.let { queue ->
+        val queue: ArrayList<MediaItem>? = intent?.getParcelableArrayListExtra("video_queue")
+        queue?.let {
             setPlayQueue(queue)
             val startPosition = intent.getIntExtra("start_position", 0)
             playAt(startPosition)
@@ -280,8 +281,7 @@ class VideoPlaybackService : Service() {
     private fun initMediaSession() {
         mediaSession = MediaSessionCompat(this, "VideoPlaybackService").apply {
             setCallback(mediaSessionCallback)
-            @Suppress("DEPRECATION")
-            setSessionToken(sessionToken)
+            isActive = true
 
             setPlaybackState(
                 PlaybackStateCompat.Builder()
