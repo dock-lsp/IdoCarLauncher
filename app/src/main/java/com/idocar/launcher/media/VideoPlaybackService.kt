@@ -280,7 +280,8 @@ class VideoPlaybackService : Service() {
     private fun initMediaSession() {
         mediaSession = MediaSessionCompat(this, "VideoPlaybackService").apply {
             setCallback(mediaSessionCallback)
-            setToken(sessionToken.token)
+            @Suppress("DEPRECATION")
+            setSessionToken(sessionToken)
 
             setPlaybackState(
                 PlaybackStateCompat.Builder()

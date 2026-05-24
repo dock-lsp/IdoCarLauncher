@@ -278,7 +278,8 @@ class MediaPlaybackService : Service() {
     private fun initMediaSession() {
         mediaSession = MediaSessionCompat(this, "MediaPlaybackService").apply {
             setCallback(mediaSessionCallback)
-            setToken(sessionToken.token)
+            @Suppress("DEPRECATION")
+            setSessionToken(sessionToken)
 
             // 设置初始播放状态
             setPlaybackState(
