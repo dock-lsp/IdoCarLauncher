@@ -36,6 +36,8 @@
     </style>
     
     <!-- CardView 样式 -->
+    <style name="Widget" />
+    
     <style name="Widget.CarLauncher" />
     
     <style name="Widget.CarLauncher.CardView">
