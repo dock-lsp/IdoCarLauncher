@@ -13,6 +13,7 @@ import android.media.AudioManager
 import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
+import android.os.Parcelable
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
@@ -231,11 +232,19 @@ class VideoPlaybackService : Service() {
 
         // 处理播放队列设置
         @Suppress("DEPRECATION", "UNCHECKED_CAST")
-        val queue: ArrayList<com.idocar.launcher.media.MediaItem>? = intent?.getParcelableArrayListExtra("video_queue") as? ArrayList<com.idocar.launcher.media.MediaItem>
+        val queue = intent?.getParcelableArrayListExtra<Parcelable>("video_queue") as? ArrayList<Parcelable>
         queue?.let {
-            setPlayQueue(queue)
-            val startPosition = intent.getIntExtra("start_position", 0)
-            playAt(startPosition)
+            val mediaQueue = it.mapNotNull { item ->
+                try {
+                    val title = item.javaClass.getMethod("getTitle").invoke(item) as? String ?: ""
+                    val path = item.javaClass.getMethod("getPath").invoke(item) as? String ?: ""
+                    androidx.media3.common.MediaItem.fromUri(path)
+                } catch (e: Exception) { null }
+            }
+            if (mediaQueue.isNotEmpty()) {
+                val startPosition = intent?.getIntExtra("start_position", 0) ?: 0
+                playAt(startPosition)
+            }
         }
 
         return START_STICKY
