@@ -42,4 +42,8 @@
     
     <!-- 其他颜色 -->
     <color name="overlay">#80000000</color>
+    
+    <!-- 兼容颜色 -->
+    <color name="colorPrimary">@color/primary</color>
+    <color name="colorAccent">@color/accent</color>
 </resources>

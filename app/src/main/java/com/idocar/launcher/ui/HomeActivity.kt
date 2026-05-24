@@ -58,10 +58,7 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         
-        // 设置全屏
         setupFullscreen()
-        
-        // 检查权限
         checkPermissions()
     }
 
@@ -96,13 +93,6 @@ class HomeActivity : AppCompatActivity() {
             permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION)
         }
         
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.QUERY_ALL_PACKAGES)
-                != PackageManager.PERMISSION_GRANTED) {
-                // QUERY_ALL_PACKAGES 需要特殊声明
-            }
-        }
-        
         if (permissions.isNotEmpty()) {
             permissionLauncher.launch(permissions.toTypedArray())
         } else {
@@ -119,15 +109,10 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        // 更新时间显示
         updateTime()
-        
-        // 车辆信息（模拟）
-        updateVehicleInfo()
     }
 
     private fun setupRecyclerViews() {
-        // 应用网格
         appAdapter = AppGridAdapter(
             onAppClick = { app -> launchApp(app) },
             onAppLongClick = { app -> showAppOptions(app) }
@@ -139,23 +124,15 @@ class HomeActivity : AppCompatActivity() {
             setHasFixedSize(true)
         }
         
-        // 快捷方式
         shortcutAdapter = ShortcutAdapter(
             onShortcutClick = { shortcut -> handleShortcutClick(shortcut) },
             onShortcutLongClick = { shortcut -> showShortcutOptions(shortcut) }
         )
-        
-        binding.recyclerShortcuts.apply {
-            layoutManager = LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
-            adapter = shortcutAdapter
-            setHasFixedSize(true)
-        }
     }
 
     private fun setupObservers() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                // 观察应用列表
                 viewModel.apps.collectLatest { apps ->
                     appAdapter.submitList(apps)
                 }
@@ -164,7 +141,6 @@ class HomeActivity : AppCompatActivity() {
         
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                // 观察快捷方式
                 viewModel.shortcuts.collectLatest { shortcuts ->
                     shortcutAdapter.submitList(shortcuts)
                 }
@@ -173,7 +149,6 @@ class HomeActivity : AppCompatActivity() {
         
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                // 观察媒体播放状态
                 (application as CarLauncherApp).mediaControllerManager.playbackState.collect { state ->
                     updateMediaWidget(state)
                 }
@@ -182,7 +157,6 @@ class HomeActivity : AppCompatActivity() {
         
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                // 观察导航状态
                 (application as CarLauncherApp).navigationManager.navigationState.collect { state ->
                     updateNavigationWidget(state)
                 }
@@ -191,50 +165,37 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupClickListeners() {
-        // 设置按钮
         binding.btnSettings.setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
         }
         
-        // 应用管理
-        binding.btnAppManager.setOnClickListener {
+        binding.btnApps.setOnClickListener {
             startActivity(Intent(this, AppManagerActivity::class.java))
         }
         
-        // 主题切换
-        binding.btnTheme.setOnClickListener {
-            startActivity(Intent(this, ThemeActivity::class.java))
-        }
-        
-        // 语音助手
-        binding.btnVoice.setOnClickListener {
-            startActivity(Intent(this, VoiceAssistantActivity::class.java))
-        }
-        
-        // 导航
-        binding.cardNavigation.setOnClickListener {
+        binding.btnNav.setOnClickListener {
             launchNavigation()
         }
         
-        // 媒体控制
         binding.cardMedia.setOnClickListener {
             launchMediaPlayer()
         }
         
-        // 播放/暂停
         binding.btnPlayPause.setOnClickListener {
             (application as CarLauncherApp).mediaControllerManager.togglePlayPause()
         }
         
-        // 下一首
         binding.btnNext.setOnClickListener {
             (application as CarLauncherApp).mediaControllerManager.skipToNext()
+        }
+        
+        binding.btnVoice.setOnClickListener {
+            startActivity(Intent(this, VoiceAssistantActivity::class.java))
         }
     }
 
     private fun startServices() {
-        // 启动悬浮球服务
-        if (FloatingBallService.isRunning.not()) {
+        if (!FloatingBallService.isRunning) {
             startService(Intent(this, FloatingBallService::class.java))
         }
     }
@@ -242,20 +203,11 @@ class HomeActivity : AppCompatActivity() {
     private fun updateTime() {
         binding.tvTime.text = TimeUtils.getCurrentTime()
         binding.tvDate.text = TimeUtils.getCurrentDate()
-        
-        // 每分钟更新
         binding.root.postDelayed({ updateTime() }, 60000)
-    }
-
-    private fun updateVehicleInfo() {
-        // 模拟车辆信息更新
-        binding.tvSpeed.text = "0"
-        binding.tvTemperature.text = "24°C"
     }
 
     private fun updateMediaWidget(state: com.idocar.launcher.data.MediaPlaybackState) {
         binding.tvMediaTitle.text = state.title.takeIf { it.isNotEmpty() } ?: getString(R.string.no_media)
-        binding.tvMediaArtist.text = state.artist
         binding.btnPlayPause.setImageResource(
             if (state.isPlaying) R.drawable.ic_pause else R.drawable.ic_play
         )
@@ -264,11 +216,8 @@ class HomeActivity : AppCompatActivity() {
     private fun updateNavigationWidget(state: com.idocar.launcher.data.NavigationState) {
         if (state.isNavigating) {
             binding.tvNavDestination.text = state.destination
-            binding.tvNavInfo.text = "${state.distanceRemaining / 1000}km · ${state.timeRemaining / 60}min"
-            binding.cardNavigation.visibility = View.VISIBLE
         } else {
             binding.tvNavDestination.text = getString(R.string.tap_to_navigate)
-            binding.tvNavInfo.text = ""
         }
     }
 
@@ -284,9 +233,9 @@ class HomeActivity : AppCompatActivity() {
 
     private fun launchNavigation() {
         val navApps = listOf(
-            "com.autonavi.minimap",      // 高德地图
-            "com.baidu.BaiduMap",        // 百度地图
-            "com.google.android.apps.maps" // Google Maps
+            "com.autonavi.minimap",
+            "com.baidu.BaiduMap",
+            "com.google.android.apps.maps"
         )
         
         for (pkg in navApps) {
@@ -297,13 +246,11 @@ class HomeActivity : AppCompatActivity() {
             }
         }
         
-        // 打开导航选择界面
-        startActivity(Intent(this, NavigationActivity::class.java))
+        startActivity(Intent(this, MediaActivity::class.java))
     }
 
     private fun launchMediaPlayer() {
-        val intent = Intent(this, MediaActivity::class.java)
-        startActivity(intent)
+        startActivity(Intent(this, MediaActivity::class.java))
     }
 
     private fun handleShortcutClick(shortcut: ShortcutItem) {
@@ -316,12 +263,8 @@ class HomeActivity : AppCompatActivity() {
             ShortcutItem.ActionType.FUNCTION -> {
                 handleFunctionShortcut(shortcut)
             }
-            ShortcutItem.ActionType.WIDGET -> {
-                // 打开小部件
-            }
-            ShortcutItem.ActionType.CUSTOM -> {
-                // 自定义操作
-            }
+            ShortcutItem.ActionType.WIDGET -> {}
+            ShortcutItem.ActionType.CUSTOM -> {}
         }
     }
 
@@ -343,21 +286,15 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun showAppOptions(app: AppItem) {
-        // 显示应用选项对话框
         AppOptionsDialog.newInstance(app).show(supportFragmentManager, "app_options")
     }
 
-    private fun showShortcutOptions(shortcut: ShortcutItem) {
-        // 显示快捷方式选项
-    }
+    private fun showShortcutOptions(shortcut: ShortcutItem) {}
 
     override fun onResume() {
         super.onResume()
         updateTime()
     }
 
-    override fun onBackPressed() {
-        // 主界面不响应返回键，保持桌面状态
-        // 可以添加确认退出或进入最近任务
-    }
+    override fun onBackPressed() {}
 }
