@@ -22,4 +22,7 @@
     <dimen name="button_height">48dp</dimen>
     <dimen name="card_corner_radius">12dp</dimen>
     <dimen name="card_elevation">4dp</dimen>
+    
+    <!-- 浮动球 -->
+    <dimen name="floating_ball_size">56dp</dimen>
 </resources>
