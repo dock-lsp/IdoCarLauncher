@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="通用设置"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:key="floating_ball_enabled"
+            android:title="悬浮球"
+            android:summary="显示悬浮快捷按钮"
+            android:defaultValue="true"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            android:key="show_speed"
+            android:title="显示车速"
+            android:summary="在主界面显示车速信息"
+            android:defaultValue="true"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="导航设置"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:key="auto_navigation"
+            android:title="自动导航"
+            android:summary="启动时自动恢复上次导航"
+            android:defaultValue="false"
+            app:iconSpaceReserved="false" />
+
+        <ListPreference
+            android:key="default_nav_app"
+            android:title="默认导航应用"
+            android:summary="选择默认的导航应用"
+            android:entries="@array/nav_app_names"
+            android:entryValues="@array/nav_app_packages"
+            android:defaultValue="com.autonavi.minimap"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="语音设置"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:key="voice_wakeup_enabled"
+            android:title="语音唤醒"
+            android:summary="通过语音唤醒助手"
+            android:defaultValue="false"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="显示设置"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:key="bg_transparency"
+            android:title="背景透明度"
+            android:summary="调节主界面背景透明度"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="bg_wallpaper"
+            android:title="更换背景图"
+            android:summary="选择本地图片作为桌面背景"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="video_player"
+            android:title="视频播放器"
+            android:summary="播放本地和USB中的视频文件"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="music_player"
+            android:title="音乐播放器"
+            android:summary="播放本地和USB中的音乐文件"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="功能管理"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:key="app_manager"
+            android:title="应用管理"
+            android:summary="管理已安装的应用"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="theme_settings"
+            android:title="主题"
+            android:summary="更换桌面主题和壁纸"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="plugin_manager"
+            android:title="插件管理"
+            android:summary="管理桌面插件"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="其他"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:key="about"
+            android:title="关于"
+            android:summary="版本 1.0.0"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

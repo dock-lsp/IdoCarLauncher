@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_favorite"
+        android:title="收藏"
+        android:icon="@drawable/ic_favorite" />
+
+    <item
+        android:id="@+id/action_app_info"
+        android:title="应用信息"
+        android:icon="@drawable/ic_info" />
+
+    <item
+        android:id="@+id/action_uninstall"
+        android:title="卸载"
+        android:icon="@drawable/ic_delete" />
+
+</menu>

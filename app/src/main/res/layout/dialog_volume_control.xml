@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 音量控制对话框 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_lg"
+    android:background="@color/surface">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="音量控制"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_xl"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/spacing_lg" />
+
+    <!-- 媒体音量 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="@dimen/spacing_md">
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_music"
+            app:tint="@color/accent" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="媒体"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_md"
+            android:layout_marginStart="@dimen/spacing_sm" />
+
+        <ImageButton
+            android:id="@+id/btn_media_minus"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_minus"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/text_secondary" />
+
+        <SeekBar
+            android:id="@+id/seekbar_media"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:max="100"
+            android:progress="50"
+            android:progressTint="@color/accent"
+            android:thumbTint="@color/accent" />
+
+        <ImageButton
+            android:id="@+id/btn_media_plus"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_plus"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/text_secondary" />
+
+        <TextView
+            android:id="@+id/tv_media_volume"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="50"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_md"
+            android:gravity="end" />
+    </LinearLayout>
+
+    <!-- 铃声音量 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="@dimen/spacing_md">
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_ringtone"
+            app:tint="@color/music_primary" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="铃声"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_md"
+            android:layout_marginStart="@dimen/spacing_sm" />
+
+        <ImageButton
+            android:id="@+id/btn_ringtone_minus"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_minus"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/text_secondary" />
+
+        <SeekBar
+            android:id="@+id/seekbar_ringtone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:max="100"
+            android:progress="70"
+            android:progressTint="@color/music_primary"
+            android:thumbTint="@color/music_primary" />
+
+        <ImageButton
+            android:id="@+id/btn_ringtone_plus"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_plus"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/text_secondary" />
+
+        <TextView
+            android:id="@+id/tv_ringtone_volume"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="70"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_md"
+            android:gravity="end" />
+    </LinearLayout>
+
+    <!-- 闹钟音量 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="@dimen/spacing_md">
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_alarm"
+            app:tint="@color/warning" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="闹钟"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_md"
+            android:layout_marginStart="@dimen/spacing_sm" />
+
+        <ImageButton
+            android:id="@+id/btn_alarm_minus"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_minus"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/text_secondary" />
+
+        <SeekBar
+            android:id="@+id/seekbar_alarm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:max="100"
+            android:progress="80"
+            android:progressTint="@color/warning"
+            android:thumbTint="@color/warning" />
+
+        <ImageButton
+            android:id="@+id/btn_alarm_plus"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_plus"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/text_secondary" />
+
+        <TextView
+            android:id="@+id/tv_alarm_volume"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="80"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_md"
+            android:gravity="end" />
+    </LinearLayout>
+
+    <!-- 关闭按钮 -->
+    <Button
+        android:id="@+id/btn_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="关闭"
+        android:textColor="@color/text_primary"
+        android:backgroundTint="@color/primary"
+        android:layout_marginTop="@dimen/spacing_md" />
+
+</LinearLayout>

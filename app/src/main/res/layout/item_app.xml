@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_sm">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_app_icon"
+            android:layout_width="@dimen/app_icon_size"
+            android:layout_height="@dimen/app_icon_size"
+            android:background="@drawable/bg_app_icon"
+            android:padding="@dimen/spacing_sm"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/sym_def_app_icon" />
+
+        <ImageView
+            android:id="@+id/iv_favorite"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="top|end"
+            android:src="@drawable/ic_favorite"
+            android:visibility="gone"
+            app:tint="@color/accent" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_app_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xs"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="App Name"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_sm" />
+
+</LinearLayout>
