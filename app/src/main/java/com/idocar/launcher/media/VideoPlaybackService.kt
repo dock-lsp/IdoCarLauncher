@@ -230,8 +230,8 @@ class VideoPlaybackService : Service() {
         }
 
         // 处理播放队列设置
-        @Suppress("DEPRECATION")
-        val queue: ArrayList<MediaItem>? = intent?.getParcelableArrayListExtra("video_queue")
+        @Suppress("DEPRECATION", "UNCHECKED_CAST")
+        val queue: ArrayList<com.idocar.launcher.media.MediaItem>? = intent?.getParcelableArrayListExtra("video_queue") as? ArrayList<com.idocar.launcher.media.MediaItem>
         queue?.let {
             setPlayQueue(queue)
             val startPosition = intent.getIntExtra("start_position", 0)
