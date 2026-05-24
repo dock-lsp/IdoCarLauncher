@@ -126,6 +126,22 @@
             android:screenOrientation="landscape"
             android:theme="@style/Theme.CarLauncher" />
 
+        <!-- 本地音乐播放器 -->
+        <activity
+            android:name=".media.LocalMusicPlayerActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.CarLauncher" />
+
+        <!-- 本地视频播放器 -->
+        <activity
+            android:name=".media.LocalVideoPlayerActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize|smallestScreenSize"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.CarLauncher" />
+
         <!-- 插件管理 -->
         <activity
             android:name=".plugin.PluginActivity"
