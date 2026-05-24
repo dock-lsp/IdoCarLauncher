@@ -39,4 +39,7 @@
     
     <!-- 导航颜色 -->
     <color name="navigation_primary">#4CAF50</color>
+    
+    <!-- 其他颜色 -->
+    <color name="overlay">#80000000</color>
 </resources>

@@ -117,4 +117,26 @@
     <!-- 导航 -->
     <string name="voice_input">语音输入</string>
     <string name="start_navigation">开始导航</string>
+    <string name="destination">目的地</string>
+    <string name="next_road">下一道路</string>
+    <string name="distance_remaining">剩余距离</string>
+    <string name="time_remaining">剩余时间</string>
+    <string name="current_road">当前道路</string>
+    <string name="unknown_road">未知道路</string>
+    <string name="stop_navigation">停止导航</string>
+    <string name="pip_mode">画中画模式</string>
+    
+    <!-- 插件 -->
+    <string name="no_plugins">暂无插件</string>
+    <string name="add_plugin">添加插件</string>
+    
+    <!-- 主题设置 -->
+    <string name="theme_settings">主题设置</string>
+    <string name="reset">重置</string>
+    <string name="apply">应用</string>
+    
+    <!-- 语音助手 -->
+    <string name="listening">正在聆听...</string>
+    <string name="speak_now">请说话</string>
+    <string name="help">帮助</string>
 </resources>
