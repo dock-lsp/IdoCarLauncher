@@ -7,6 +7,9 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 env:
   JAVA_VERSION: '17'
   DISTRIBUTION: 'temurin'
@@ -81,8 +84,8 @@ jobs:
       - name: Get version
         id: version
         run: |
-          VERSION=$(grep "versionName" app/build.gradle | head -1 | sed "s/.*versionName '\(.*\)'.*/\1/")
-          CODE=$(grep "versionCode" app/build.gradle | head -1 | sed "s/.*versionCode \(.*\).*/\1/")
+          VERSION=$(grep "versionName" app/build.gradle | head -1 | sed 's/.*versionName[[:space:]]*["'"'"']\([^"'"'"']*\)["'"'"'].*/\1/')
+          CODE=$(grep "versionCode" app/build.gradle | head -1 | sed 's/.*versionCode[[:space:]]*\([0-9]*\).*/\1/')
           echo "version=v${VERSION}" >> $GITHUB_OUTPUT
           echo "version_name=${VERSION}" >> $GITHUB_OUTPUT
           echo "version_code=${CODE}" >> $GITHUB_OUTPUT
