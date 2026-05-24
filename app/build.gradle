@@ -124,7 +124,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:18.2.0'
     
     // Speech Recognition
-    implementation 'com.google.mlkit:speech:1.0.0'
+    implementation 'com.google.mlkit:speech-recognition:19.0.0'
     
     // Testing
     testImplementation 'junit:junit:4.13.2'
