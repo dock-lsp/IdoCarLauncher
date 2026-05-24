@@ -3,6 +3,7 @@ package com.idocar.launcher.ui
 import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
@@ -165,7 +166,8 @@ class AppOptionsDialog : DialogFragment() {
             putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)
             putExtra(Intent.EXTRA_SHORTCUT_NAME, app.appName)
             app.icon?.let { icon ->
-                putExtra(Intent.EXTRA_SHORTCUT_ICON, icon)
+                val bitmap = (icon as BitmapDrawable).bitmap
+                putExtra(Intent.EXTRA_SHORTCUT_ICON, bitmap)
             }
         }
 

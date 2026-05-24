@@ -13,7 +13,7 @@ import android.view.WindowManager
 import com.idocar.launcher.R
 import com.idocar.launcher.databinding.DialogFloatingMenuBinding
 import com.idocar.launcher.ui.HomeActivity
-import com.idocar.launcher.ui.NavigationActivity
+import com.idocar.launcher.navigation.NavigationActivity
 import com.idocar.launcher.ui.VoiceAssistantActivity
 
 /**

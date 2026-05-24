@@ -25,6 +25,7 @@
     
     <!-- 导航 -->
     <string name="navigation">导航</string>
+    <string name="stop">停止</string>
     <string name="navigating">正在导航</string>
     <string name="navigation_in_progress">导航进行中</string>
     <string name="navigation_stopped">导航已停止</string>

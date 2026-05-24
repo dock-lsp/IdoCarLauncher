@@ -79,7 +79,7 @@ class AppManagerActivity : AppCompatActivity() {
                 R.id.chip_navigation -> viewModel.filterByCategory(AppItem.AppCategory.NAVIGATION)
                 R.id.chip_music -> viewModel.filterByCategory(AppItem.AppCategory.MUSIC)
                 R.id.chip_video -> viewModel.filterByCategory(AppItem.AppCategory.VIDEO)
-                R.id.chip_tools -> viewModel.filterByCategory(AppItem.AppCategory.TOOLS)
+                R.id.chip_tool -> viewModel.filterByCategory(AppItem.AppCategory.TOOLS)
             }
         }
 

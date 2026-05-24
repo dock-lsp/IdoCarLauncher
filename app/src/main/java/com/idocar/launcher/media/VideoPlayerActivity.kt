@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
-import androidx.media3.ui.PlayerView
+import androidx.media3.ui.PlayerView as Media3PlayerView
 import com.idocar.launcher.R
 import com.idocar.launcher.databinding.ActivityVideoPlayerBinding
 
@@ -25,7 +25,7 @@ class VideoPlayerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityVideoPlayerBinding
     private var player: ExoPlayer? = null
     
-    private lateinit var playerView: PlayerView
+    private lateinit var playerView: Media3PlayerView
     private lateinit var btnPlayPause: ImageButton
     private lateinit var btnPrevious: ImageButton
     private lateinit var btnNext: ImageButton
@@ -79,7 +79,7 @@ class VideoPlayerActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        playerView = binding.playerView
+        playerView = binding.playerView as Media3PlayerView
         btnPlayPause = binding.btnPlayPause
         btnPrevious = binding.btnPrevious
         btnNext = binding.btnNext

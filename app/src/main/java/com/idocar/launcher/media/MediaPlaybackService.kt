@@ -7,7 +7,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.audioeffect.AudioEffect
+import android.media.audiofx.AudioEffect
 import android.media.AudioAttributes
 import android.media.AudioFocusRequest
 import android.media.AudioManager
@@ -278,7 +278,7 @@ class MediaPlaybackService : Service() {
     private fun initMediaSession() {
         mediaSession = MediaSessionCompat(this, "MediaPlaybackService").apply {
             setCallback(mediaSessionCallback)
-            setSessionToken(sessionToken)
+            setToken(sessionToken.token)
 
             // 设置初始播放状态
             setPlaybackState(
