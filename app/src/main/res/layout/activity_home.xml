@@ -73,7 +73,7 @@
                 android:textSize="@dimen/text_lg" />
 
             <ImageView
-                android:id="@+id/btn_voice"
+                android:id="@+id/btn_voice_header"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginStart="@dimen/spacing_sm"
